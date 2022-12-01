@@ -24,14 +24,29 @@ with conn:
     #for text only
     fileList = ('information.docx','Hello.txt','myImage.png', \
             'myMovie.mpg', 'World.txt','data.pdf','myPhoto.jpg')
-    res = [] #var to hold result
     for x in fileList:
         if x.endswith('.txt'):
             cur.execute("INSERT INTO tbl_files(col_fileName) VALUES (?)",
                         (x,))
     conn.commit()
 conn.close()
-            
+
+#printing db to the shell
+
+conn = sqlite3.connect('files.db')
+
+with conn:
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM tbl_files")
+
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
+
+    
+
+        
 
 
     
