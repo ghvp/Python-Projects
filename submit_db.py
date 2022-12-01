@@ -48,6 +48,13 @@ with conn:
 fileList = ('information.docx','Hello.txt','myImage.png', \
             'myMovie.mpg', 'World.txt','data.pdf','myPhoto.jpg')
 
+conn = sqlite3.connect('submit.db')
+
+with conn:
+    cur = conn.cursor()
+    cur.execute("INSERT INTO tbl_contact VALUES (?);", [','.join(fileList)])
+
+
 #trying to create a function that will iterate through the files to check
 #for text only
 res = [] #var to hold result
