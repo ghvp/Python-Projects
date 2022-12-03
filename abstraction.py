@@ -13,6 +13,7 @@ class greeting(ABC):
 
 #child class
 class to_who(greeting):
+    #defining implementation for a shared method between the child and parent class
     def greet_per(self, name):
         print('This greeting was addressed to {}'.format(name))
 
