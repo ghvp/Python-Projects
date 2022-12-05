@@ -67,28 +67,7 @@ class ParentWindow(Frame):
         self.destination_dir.delete(0, END)
         #the .insert method will insert the user selection to the destination_dir entry widget
         self.destination_dir.insert(0, selectDestDir)
-
-
-
-
-#creates a function that will check for any new or edited files with the
-    #last 24 hours
-    def file_time(self):
-        #get device current date and time
-        cur_date = datetime.datetime.now()
-        #specifying a folder path for the os module to use
-        path = "C:\\Users\\maggi\\OneDrive\\Desktop\\Customer Source"
-        #creating a variable to store the os.path.getmtime module
-        mod_time = os.path.getmtime(path)
-        #deducting the current time from the mod_time of the folder
-        diff_time = cur_time - mod_time
-        #creating an if statement that won't allow for files older than 24
-        #hours to be transferred into the destination folder
-        #if diff_time <= datetime.timedelta(1):
                 
-
-
-
 
     #Creates function to transfer files from one directory to another
     def transferFiles(self):
@@ -99,14 +78,25 @@ class ParentWindow(Frame):
         #gets a list of files in the source directory
         source_files = os.listdir(source)
         #runs through each file in the source directory
+
+
+        #get device current date and time
+        cur_date = datetime.time
+        
+        #specifying a folder path for the os module to use
+        path = "C:\\Users\\maggi\\OneDrive\\Desktop\\Customer Source"
+        #creating a variable to store the os.path.getmtime module
+        mod_time = os.path.getmtime(path)
+        #deducting the current time from the mod_time of the folder
+        diff_time = cur_date - mod_time
+        #creating an if statement that won't allow for files older than 24
+        #hours to be transferred into the destination folder
         for i in source_files:
-            #moves each file from the source to the destination
-            diff_time = cur_time - mod_time
-
-            if diff_time <= datetime.timedelta(1):
-
-                shutil.move(source + '/' + i, destination)
-                print(i + ' was successfully transferred')
+             shutil.move(source + '/' + i, destination)
+             print(i + ' was successfully transferred')
+                
+             if diff_time <= datetime.timedelta(1):
+                 print('Files unable to be transfered')
            
 
 
