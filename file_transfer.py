@@ -78,28 +78,19 @@ class ParentWindow(Frame):
         #gets a list of files in the source directory
         source_files = os.listdir(source)
         #runs through each file in the source directory
-
-
-        #get device current date and time
-        cur_date = datetime.time
         
-        #specifying a folder path for the os module to use
-        path = "C:\\Users\\maggi\\OneDrive\\Desktop\\Customer Source"
-        #creating a variable to store the os.path.getmtime module
-        mod_time = os.path.getmtime(path)
-        #deducting the current time from the mod_time of the folder
-        diff_time = cur_date - mod_time
         #creating an if statement that won't allow for files older than 24
         #hours to be transferred into the destination folder
         for i in source_files:
-             shutil.move(source + '/' + i, destination)
-             print(i + ' was successfully transferred')
+            source_time = os.path.getmtime(source + '/' + i)
+            mod_time = datetime.fromtimestamp(source_time)
+            current = datetime.now()
+            one_day_ago = current - timedelta(hours = 24)
+             
+            if mod_time > one_day_ago:
+                shutil.move(source + '/' + i, destination)
+                print(i + ' was successfully transferred')
                 
-             if diff_time <= datetime.timedelta(1):
-                 print('Files unable to be transfered')
-           
-
-
 
     #creates function to exit program
     def exit_program(self):
